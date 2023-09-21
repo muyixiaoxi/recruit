@@ -11,16 +11,16 @@ log:
   max_age: 30
   max_backups: 7
 mysql:
-  host: ""
+  host: "39.101.77.206"
   port: 3306
-  user: ""
-  password: ""
-  dbname: ""
+  user: "itoffice"
+  password: "Wksycxy0.0"
+  dbname: "recruit"
   max_open_conns: 200
   max_idle_conns: 50
 redis:
-  host: ""
+  host: "39.101.77.206"
   port: 6379
   db: 0
-  password: ""
+  password: "Wksycxy0.0"
   pool_size: 100
