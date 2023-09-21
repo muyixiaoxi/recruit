@@ -1,0 +1,26 @@
+project:
+  name: ""
+  mode: "dev"
+  port: 8181
+  start_time: "2020-07-01"
+  matchine_id: 1
+log:
+  level: "debug"
+  filename: ""
+  max_size: 200
+  max_age: 30
+  max_backups: 7
+mysql:
+  host: ""
+  port: 3306
+  user: ""
+  password: ""
+  dbname: ""
+  max_open_conns: 200
+  max_idle_conns: 50
+redis:
+  host: ""
+  port: 6379
+  db: 0
+  password: ""
+  pool_size: 100
