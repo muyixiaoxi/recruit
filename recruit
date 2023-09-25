@@ -1,0 +1,89 @@
+{"level":"INFO","time":"2023-09-21T17:22:32.452+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:25:19.738+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:32:17.639+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:33:24.525+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:37:00.562+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:38:20.026+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:38:47.334+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-21T17:40:40.146+0800","caller":"controllers/student.go:14","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-09-21T17:42:34.811+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:44:18.404+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T17:44:48.485+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:08:43.374+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:09:12.356+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:11:08.053+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:13:00.764+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:13:09.577+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:14:21.541+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:15:15.816+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-21T19:17:06.491+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-21T19:17:22.702+0800","caller":"controllers/student.go:14","msg":"c.ShouldBind(&student) failed","error":"strconv.ParseInt: parsing \"男\": invalid syntax"}
+{"level":"INFO","time":"2023-09-21T19:17:50.778+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-21T19:18:30.226+0800","caller":"controllers/student.go:14","msg":"c.ShouldBind(&student) failed","error":"strconv.ParseInt: parsing \"男\": invalid syntax"}
+{"level":"INFO","time":"2023-09-21T19:18:56.043+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-21T19:19:12.080+0800","caller":"controllers/student.go:14","msg":"c.ShouldBind(&student) failed","error":"strconv.ParseInt: parsing \"男\": invalid syntax"}
+{"level":"ERROR","time":"2023-09-21T19:19:27.760+0800","caller":"controllers/student.go:14","msg":"c.ShouldBind(&student) failed","error":"strconv.ParseInt: parsing \"男\": invalid syntax"}
+{"level":"ERROR","time":"2023-09-21T19:19:29.222+0800","caller":"controllers/student.go:14","msg":"c.ShouldBind(&student) failed","error":"strconv.ParseInt: parsing \"男\": invalid syntax"}
+{"level":"INFO","time":"2023-09-21T19:20:21.045+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T17:46:58.056+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T17:48:03.118+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T17:50:36.535+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:02:49.543+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:04:20.357+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:05:13.461+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:07:52.188+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:23:00.500+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:24:47.327+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-22T18:26:04.714+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T08:15:43.313+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:21:00.663+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:23:29.223+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:25:24.817+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:26:25.976+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:33:39.922+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:41:08.751+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:43:00.810+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:46:41.341+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T09:48:36.105+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T10:04:01.638+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:16:21.102+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:17:32.272+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:20:51.660+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:21:40.107+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:22:42.038+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:26:09.562+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:28:35.432+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:29:14.723+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:33:58.675+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:36:56.296+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:39:19.245+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T11:39:36.337+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T15:06:21.967+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T16:09:29.505+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T21:04:50.701+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T21:15:48.065+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-23T22:46:51.593+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-24T08:02:05.792+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-24T08:24:45.572+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-24T08:25:11.197+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-24T08:36:46.691+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-24T15:09:14.847+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-24T15:13:45.401+0800","caller":"controllers/student.go:32","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"ERROR","time":"2023-09-24T15:17:31.522+0800","caller":"controllers/student.go:32","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"ERROR","time":"2023-09-24T15:18:05.876+0800","caller":"controllers/student.go:32","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"ERROR","time":"2023-09-24T15:52:05.825+0800","caller":"controllers/student.go:32","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"ERROR","time":"2023-09-24T15:53:25.600+0800","caller":"controllers/student.go:32","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-09-24T15:54:04.459+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-24T15:54:16.447+0800","caller":"controllers/student.go:41","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-09-24T15:56:19.202+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-24T15:56:45.110+0800","caller":"controllers/student.go:36","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.StudentNumber' Error:Field validation for 'StudentNumber' failed on the 'required' tag\nKey: 'Student.Name' Error:Field validation for 'Name' failed on the 'required' tag\nKey: 'Student.Gender' Error:Field validation for 'Gender' failed on the 'required' tag\nKey: 'Student.Class' Error:Field validation for 'Class' failed on the 'required' tag\nKey: 'Student.QQ' Error:Field validation for 'QQ' failed on the 'required' tag\nKey: 'Student.Phone' Error:Field validation for 'Phone' failed on the 'required' tag\nKey: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-09-24T16:07:30.637+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-09-24T16:07:34.634+0800","caller":"controllers/student.go:36","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag"}
+{"level":"ERROR","time":"2023-09-24T16:08:38.374+0800","caller":"controllers/student.go:36","msg":"c.ShouldBind(&student) failed","error":"Key: 'Student.Job' Error:Field validation for 'Job' failed on the 'required' tag\nKey: 'Student.SelfIntroduction' Error:Field validation for 'SelfIntroduction' failed on the 'required' tag"}
+{"level":"INFO","time":"2023-09-24T16:09:46.402+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-25T16:46:19.569+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-25T17:01:17.693+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-25T17:11:29.683+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-25T17:12:48.615+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-25T17:21:59.189+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-09-25T17:40:34.973+0800","caller":"logger/logger.go:44","msg":"init logger success"}

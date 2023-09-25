@@ -11,6 +11,7 @@ import (
 	"recruit/dao/redis"
 	"recruit/logger"
 	"recruit/pkg/snowflake"
+	"recruit/robot"
 	"recruit/routers"
 	"recruit/settings"
 
@@ -22,6 +23,12 @@ import (
 )
 
 func main() {
+
+	if err := robot.Init(); err != nil {
+		fmt.Printf("init robot failed,err:%v\n", err)
+		return
+	}
+
 	// 1.加载配置
 	if err := settings.Init(); err != nil {
 		fmt.Printf("init setting failed,err:%v\n", err)
@@ -60,6 +67,9 @@ func main() {
 		fmt.Printf("init validator trans failed,err:%v\n", err)
 		return
 	}
+
+	// 定时设置 access token
+	go controllers.TickerSetAccessToken()
 
 	// 6.启动服务 （优雅关机）
 

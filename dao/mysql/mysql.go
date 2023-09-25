@@ -5,7 +5,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"recruit/models"
 	"recruit/settings"
 )
 
@@ -30,9 +29,11 @@ func Init(cfg *settings.MySQLConfig) (err error) {
 	}
 
 	//自动建表
-	creatTable(models.Student{})
+	//DB.AutoMigrate(models.Message{})
+	//DB.AutoMigrate(models.NotificationMessage{})
+	//creatTable(models.Student{})
 	//migrate 仅支持创建表、增加表中没有的字段和索引
-	//DB.AutoMigrate(&models.User{})
+	//DB.AutoMigrate(&models.Student{})
 	return
 }
 

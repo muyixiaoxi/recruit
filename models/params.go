@@ -1,12 +1,20 @@
 package models
 
-type ParamPhoneAndAuthCode struct {
-	Phone    string `json:"phone" form:"phone" binding:"required"`
-	AuthCode string `json:"auth_code" form:"auth_code"`
+type LoginResponse struct {
+	Openid      string `json:"openid"`
+	SessionKey  string `json:"session_key"`
+	AccessToken string `json:"access_token"`
 }
 
-type ParamLogin struct {
-	Phone    string `form:"phone" binding:"required"`
-	AuthCode string `form:"auth_code"`
-	Password string `form:"password"`
+type AccessToken struct {
+	AccessToken string `json:"access_token"`
+}
+
+// TemplateMessage 模板消息
+type TemplateMessage struct {
+	AccessToken string `json:"access_token"`
+	Appid       string `json:"appid"`
+	Touser      string `json:"touser"`
+	TemplateId  string `json:"templateId"`
+	FormId      string `json:"formId"`
 }

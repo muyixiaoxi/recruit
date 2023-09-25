@@ -6,7 +6,7 @@ project:
   matchine_id: 1
 log:
   level: "debug"
-  filename: ""
+  filename: "recruit"
   max_size: 200
   max_age: 30
   max_backups: 7
