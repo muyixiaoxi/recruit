@@ -8,7 +8,10 @@ import (
 	"recruit/settings"
 )
 
-var DB *gorm.DB
+var (
+	TX *gorm.DB
+	DB *gorm.DB
+)
 
 // Init 初始化MySQL连接r
 func Init(cfg *settings.MySQLConfig) (err error) {
@@ -29,16 +32,16 @@ func Init(cfg *settings.MySQLConfig) (err error) {
 	}
 
 	//自动建表
-	//DB.AutoMigrate(models.Message{})
-	//DB.AutoMigrate(models.NotificationMessage{})
 	//creatTable(models.Student{})
 	//migrate 仅支持创建表、增加表中没有的字段和索引
-	//DB.AutoMigrate(&models.Student{})
+	//DB.AutoMigrate(&models.Student{}, &models.Message{}, &models.ReadMessage{}, &models.TimeArrange{})
+	//DB.AutoMigrate(&models.Arrange{}, &models.Student{})
+	//DB.AutoMigrate(&models.Student{}, &models.TimeArrange{})
 	return
 }
 
 // 自动建表方法
-func creatTable(dst interface{}) {
+func createTable(dst interface{}) {
 	if !DB.Migrator().HasTable(dst) {
 		err := DB.AutoMigrate(dst)
 		if err != nil {

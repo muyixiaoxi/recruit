@@ -10,17 +10,6 @@ import (
 	"recruit/service"
 )
 
-// GetUnreadMsg 获取未读消息
-func GetUnreadMsg(c *gin.Context) {
-	openid := c.Query("openid")
-	msg, err := service.GetUnreadMsg(openid)
-	if err != nil {
-		ResponseError(c, CodeServerBusy)
-		return
-	}
-	ResponseSuccess(c, msg)
-}
-
 // SignUp 报名
 func SignUp(c *gin.Context) {
 	var student models.Student
@@ -38,22 +27,28 @@ func SignUp(c *gin.Context) {
 
 // Login 登录
 func Login(c *gin.Context) {
-	code := c.Query("code")
+	var par models.ParamLogin
+	if err := c.ShouldBind(&par); err != nil {
+		zap.L().Error("c.ShouldBind(&par) failed", zap.Error(err))
+		ResponseError(c, CodeInvalidParam)
+		return
+	}
 	// 获取openid
-	response, err := http.Get(fmt.Sprintf("https://api.q.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code", appId, secret, code))
+	response, err := http.Get(fmt.Sprintf("https://api.q.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code", appId, secret, par.Code))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to send request to QQ API"})
 		return
 	}
 	defer response.Body.Close()
 	var loginResponse models.LoginResponse
+	fmt.Println(response.Body)
 	if err := json.NewDecoder(response.Body).Decode(&loginResponse); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse QQ API response"})
 		return
 	}
 
-	// 注册
-	service.Signup(loginResponse.Openid)
+	// 登录
+	service.StudentLogin(loginResponse.Openid, par.Avatar)
 
 	c.JSON(http.StatusOK, loginResponse)
 }
@@ -62,7 +57,7 @@ func Login(c *gin.Context) {
 func GetMySignUp(c *gin.Context) {
 	//登录，返回个人进程
 	openid := c.Query("openid")
-	date, err := service.GetMySignUp(openid)
+	date, err := service.GetSignUpInfoByOpenid(openid)
 	if err != nil {
 		ResponseError(c, CodeServerBusy)
 		return
