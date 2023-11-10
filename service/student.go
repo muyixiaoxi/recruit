@@ -22,6 +22,7 @@ func StudentLogin(openid string, avtar string) error {
 
 // SignUp 报名
 func SignUp(s *models.Student) error {
+	s.State = 1
 	return mysql.SignUp(s)
 }
 

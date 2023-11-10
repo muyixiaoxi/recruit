@@ -38,7 +38,7 @@ func Signup(s *models.Student) error {
 
 // SignUp 报名
 func SignUp(s *models.Student) error {
-	res := DB.Updates(s)
+	res := DB.Where("openid = ?", s.Openid).Updates(s)
 	if res.Error != nil {
 		zap.L().Error("DB.Updates(s) failed", zap.Error(res.Error))
 	}

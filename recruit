@@ -814,3 +814,7 @@
 {"level":"INFO","time":"2023-10-28T20:30:13.587+0800","caller":"logger/logger.go:44","msg":"init logger success"}
 {"level":"INFO","time":"2023-10-28T20:32:16.611+0800","caller":"logger/logger.go:44","msg":"init logger success"}
 {"level":"INFO","time":"2023-11-02T19:28:51.360+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-11-10T21:22:26.238+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-11-10T21:22:33.470+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-11-10T21:22:40.141+0800","caller":"mysql/student.go:43","msg":"DB.Updates(s) failed","error":"WHERE conditions required"}
+{"level":"INFO","time":"2023-11-10T21:23:39.158+0800","caller":"logger/logger.go:44","msg":"init logger success"}
