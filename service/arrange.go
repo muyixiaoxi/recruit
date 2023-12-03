@@ -35,6 +35,7 @@ func CancelTime(par models.ParamCancelArrangeTime) (err error) {
 			return err
 		}
 	}
+	tx.Commit()
 	return err
 }
 
