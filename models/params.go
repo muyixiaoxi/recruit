@@ -81,3 +81,8 @@ type ParamGroupBySpecialty struct {
 	InterviewedNum int    `json:"interviewed_num"`
 	EnrollNum      int    `json:"enroll_num"`
 }
+
+type ParamCancelArrangeTime struct {
+	Ids  []int `json:"ids"`
+	Type int   `json:"type" binding:"required"` // 1宣讲，2面试
+}

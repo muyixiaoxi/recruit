@@ -105,6 +105,9 @@ func SetupRouter() *gin.Engine {
 			// 修改面试时间
 			user.PUT("/updateInterviewTime", controllers.UpdateInterviewTime)
 
+			// 取消安排组时间
+			user.POST("/cancelTime", controllers.CancelTime)
+
 			// 获取安排组
 			user.GET("/getArrangeGroup", controllers.GetAllArrangeGroup)
 

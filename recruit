@@ -818,3 +818,7 @@
 {"level":"INFO","time":"2023-11-10T21:22:33.470+0800","caller":"logger/logger.go:44","msg":"init logger success"}
 {"level":"ERROR","time":"2023-11-10T21:22:40.141+0800","caller":"mysql/student.go:43","msg":"DB.Updates(s) failed","error":"WHERE conditions required"}
 {"level":"INFO","time":"2023-11-10T21:23:39.158+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-11-17T09:20:11.236+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-11-17T09:23:13.797+0800","caller":"mysql/admin_message.go:53","msg":"DB.First(message) failed","error":"record not found"}
+{"level":"ERROR","time":"2023-11-17T09:23:13.797+0800","caller":"controllers/admin_message.go:28","msg":"service.GetDetailMsg(&msg) failed","error":"record not found"}
+{"level":"INFO","time":"2023-12-03T22:05:08.231+0800","caller":"logger/logger.go:44","msg":"init logger success"}

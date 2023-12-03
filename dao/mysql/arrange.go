@@ -6,9 +6,21 @@ import (
 	"recruit/models"
 )
 
+// DeleteArrangeVisit 删除宣讲
+func DeleteArrangeVisit(tx *gorm.DB, ids []int) (err error) {
+	err = tx.Model(&models.Student{}).Joins("join arranges on arranges.id = student_arrange.arrange_id").Where("arranges.type = visit and  student_arrange.student_id in ?", ids).Error
+	return err
+}
+
+// DeleteArrangeInterview 删除面试
+func DeleteArrangeInterview(tx *gorm.DB, ids []int) (err error) {
+	err = tx.Model(&models.Student{}).Joins("join arranges on arranges.id = student_arrange.arrange_id").Where("arranges.type = interview and  student_arrange.student_id in ?", ids).Error
+	return err
+}
+
 // UpdateInterviewTimeIsNil 更新面试时间为空
-func UpdateInterviewTimeIsNil(arrange *models.TimeArrange) (err error) {
-	err = TX.Table("time_arranges").Where("student_id = ?", arrange.StudentID).Update("interview", nil).Error
+func UpdateInterviewTimeIsNil(tx *gorm.DB, arrange *models.TimeArrange) (err error) {
+	err = tx.Table("time_arranges").Where("student_id = ?", arrange.StudentID).Update("interview", nil).Error
 	if err != nil {
 		zap.L().Error("TX.Table(\"time_arranges\").Where(\"student_id = ?\", arrange.StudentID).Update(\"interview\", nil) failed", zap.Error(err))
 	}
@@ -16,8 +28,8 @@ func UpdateInterviewTimeIsNil(arrange *models.TimeArrange) (err error) {
 }
 
 // UpdateVisitTimeIsNil 更新宣讲时间为空
-func UpdateVisitTimeIsNil(arrange *models.TimeArrange) (err error) {
-	err = TX.Table("time_arranges").Where("student_id = ?", arrange.StudentID).Update("visit", nil).Error
+func UpdateVisitTimeIsNil(tx *gorm.DB, arrange *models.TimeArrange) (err error) {
+	err = tx.Table("time_arranges").Where("student_id = ?", arrange.StudentID).Update("visit", nil).Error
 	if err != nil {
 		zap.L().Error("TX.Table(\"time_arranges\").Where(\"student_id = ?\", arrange.StudentID).Update(\"visit\", nil) failed", zap.Error(err))
 	}
@@ -34,8 +46,8 @@ func GetAllArrangeGroup() (arr []*models.Arrange, err error) {
 }
 
 // AddStudentArrange 添加学生面试关系表
-func AddStudentArrange(sA *models.StudentArrange) (err error) {
-	err = TX.Create(sA).Error
+func AddStudentArrange(tx *gorm.DB, sA *models.StudentArrange) (err error) {
+	err = tx.Create(sA).Error
 	if err != nil {
 		zap.L().Error("DB.Create(sA) failed", zap.Error(err))
 	}
@@ -43,8 +55,8 @@ func AddStudentArrange(sA *models.StudentArrange) (err error) {
 }
 
 // AddArrange 添加安排
-func AddArrange(arrange *models.Arrange) (err error) {
-	err = TX.Create(arrange).Error
+func AddArrange(tx *gorm.DB, arrange *models.Arrange) (err error) {
+	err = tx.Create(arrange).Error
 	if err != nil {
 		zap.L().Error("DB.Create(arrange) failed", zap.Error(err))
 	}
@@ -52,8 +64,8 @@ func AddArrange(arrange *models.Arrange) (err error) {
 }
 
 // UpdateArrangeTime 修改安排时间
-func UpdateArrangeTime(ta *models.TimeArrange) error {
-	res := TX.Where("student_id = ?", ta.StudentID).Updates(ta)
+func UpdateArrangeTime(tx *gorm.DB, ta *models.TimeArrange) error {
+	res := tx.Where("student_id = ?", ta.StudentID).Updates(ta)
 	if res.Error != nil {
 		zap.L().Error("DB.Where(\"student_id = ?\", ta.StudentID).Updates(ta) failed", zap.Error(res.Error))
 	}

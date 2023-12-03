@@ -2,12 +2,13 @@ package mysql
 
 import (
 	"go.uber.org/zap"
+	"gorm.io/gorm"
 	"recruit/models"
 )
 
 // UpdateStudentsState 更改学生状态
-func UpdateStudentsState(student *models.Student) (err error) {
-	err = TX.Updates(student).Error
+func UpdateStudentsState(tx *gorm.DB, student *models.Student) (err error) {
+	err = tx.Updates(student).Error
 	if err != nil {
 		zap.L().Error("TX.Updates(student) failed", zap.Error(err))
 		return err

@@ -22,18 +22,18 @@ var OnlineUser = map[uint]chan models.InterviewRecord{}
 
 // UpdateStudentsState 修改学生状态
 func UpdateStudentsState(par *models.ParamStudents) (err error) {
-	mysql.TX = mysql.DB.Begin()
+	tx := mysql.DB.Begin()
 	for _, v := range par.StudentsId {
 		var student models.Student
 		student.ID = v
 		student.State = par.State
-		err = mysql.UpdateStudentsState(&student)
+		err = mysql.UpdateStudentsState(tx, &student)
 		if err != nil {
-			mysql.TX.Rollback()
+			tx.Rollback()
 			break
 		}
 	}
-	mysql.TX.Commit()
+	tx.Commit()
 	return err
 }
 

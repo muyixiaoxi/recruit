@@ -8,6 +8,20 @@ import (
 	"recruit/service"
 )
 
+// CancelTime 取消安排组消时间
+func CancelTime(c *gin.Context) {
+	par := models.ParamCancelArrangeTime{}
+	if err := c.ShouldBind(&par); err != nil {
+		ResponseError(c, CodeInvalidParam)
+		return
+	}
+	if err := service.CancelTime(par); err != nil {
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, CodeSuccess)
+}
+
 // GetAllArrangeGroup 获取全部安排组
 func GetAllArrangeGroup(c *gin.Context) {
 	data, err := service.GetAllArrangeGroup()

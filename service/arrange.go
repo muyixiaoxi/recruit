@@ -6,6 +6,38 @@ import (
 	"time"
 )
 
+// CancelTime 取消时间
+func CancelTime(par models.ParamCancelArrangeTime) (err error) {
+	// 取消面试安排记录表
+	// 修改学生面试时间表
+	tx := mysql.DB.Begin()
+
+	if par.Type == 1 {
+		err = mysql.DeleteArrangeVisit(tx, par.Ids)
+		if err != nil {
+			tx.Rollback()
+			return err
+		}
+		err = mysql.CancelTimeVisit(tx, par.Ids)
+		if err != nil {
+			tx.Rollback()
+			return err
+		}
+	} else if par.Type == 2 {
+		err = mysql.DeleteArrangeInterview(tx, par.Ids)
+		if err != nil {
+			tx.Rollback()
+			return err
+		}
+		err = mysql.CancelTimeInterview(tx, par.Ids)
+		if err != nil {
+			tx.Rollback()
+			return err
+		}
+	}
+	return err
+}
+
 // GetAllArrangeGroup 获取安排组
 func GetAllArrangeGroup() (arranges []*models.Arrange, err error) {
 	return mysql.GetAllArrangeGroup()
@@ -30,7 +62,7 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 	//										}
 	//								}
 	// 开启事务
-	mysql.TX = mysql.DB.Begin()
+	tx := mysql.DB.Begin()
 
 	for i := 0; i < len(arranges); i++ {
 		arranges[i] = &models.Arrange{
@@ -50,10 +82,10 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 		// 获取人员列表
 		students, err := mysql.GetVisitStudents()
 		if len(students) == 0 {
-			return nil, mysql.TX.Rollback().Error
+			return nil, tx.Rollback().Error
 		}
 		if err != nil {
-			mysql.TX.Rollback()
+			tx.Rollback()
 			return nil, err
 		}
 		for i, s := range students {
@@ -69,7 +101,7 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 				StudentID: s.ID,
 				Visit:     t,
 			}
-			mysql.UpdateArrangeTime(ta)
+			mysql.UpdateArrangeTime(tx, ta)
 			timeArranges = append(timeArranges, ta)
 			n++
 		}
@@ -78,10 +110,10 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 		// 如果需要不需要宣讲
 		students, err := mysql.GetInterviewStudents(par.NeedVisit)
 		if len(students) == 0 {
-			return nil, mysql.TX.Rollback().Error
+			return nil, tx.Rollback().Error
 		}
 		if err != nil {
-			mysql.TX.Rollback()
+			tx.Rollback()
 			return nil, err
 		}
 		for i, s := range students {
@@ -97,15 +129,15 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 				StudentID: s.ID,
 				Interview: t,
 			}
-			mysql.UpdateArrangeTime(ta)
+			mysql.UpdateArrangeTime(tx, ta)
 			timeArranges = append(timeArranges, ta)
 			n++
 		}
 	}
 	// 插入
 	for _, arrange := range arranges {
-		if err := mysql.AddArrange(arrange); err != nil {
-			mysql.TX.Rollback()
+		if err := mysql.AddArrange(tx, arrange); err != nil {
+			tx.Rollback()
 			return nil, err
 		}
 	}
@@ -115,34 +147,34 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 			s.TimeArrange = timeArranges[i]
 		}
 	}
-	return arranges, mysql.TX.Commit().Error
+	return arranges, tx.Commit().Error
 }
 
 // UpdateInterviewTime 修改面试时间
 func UpdateInterviewTime(par *models.ParamArrange) (err error) {
 	var ta = &models.TimeArrange{}
 	// 开启事务
-	mysql.TX = mysql.DB.Begin()
+	tx := mysql.DB.Begin()
 	// 宣讲
 	for _, v := range par.StudentsId {
 		ta.StudentID = v
 		ta.Interview = par.Time
 		if par.Time.IsZero() {
-			err = mysql.UpdateInterviewTimeIsNil(ta)
+			err = mysql.UpdateInterviewTimeIsNil(tx, ta)
 			if err != nil {
-				mysql.TX.Rollback()
+				tx.Rollback()
 				return err
 			}
 		}
-		err = mysql.UpdateArrangeTime(ta)
+		err = mysql.UpdateArrangeTime(tx, ta)
 		if err != nil {
 			// 回滚事务
-			mysql.TX.Rollback()
+			tx.Rollback()
 			break
 		}
 	}
 	// 提交事务
-	mysql.TX.Commit()
+	tx.Commit()
 	return err
 }
 
@@ -150,27 +182,27 @@ func UpdateInterviewTime(par *models.ParamArrange) (err error) {
 func UpdateVisitTime(par *models.ParamArrange) (err error) {
 	var ta = &models.TimeArrange{}
 	// 开启事务
-	mysql.TX = mysql.DB.Begin()
+	tx := mysql.DB.Begin()
 	// 宣讲
 	for _, v := range par.StudentsId {
 		ta.StudentID = v
 		ta.Visit = par.Time
 		// 修改时间为默认值
 		if par.Time.IsZero() {
-			if err = mysql.UpdateVisitTimeIsNil(ta); err != nil {
-				mysql.TX.Rollback()
+			if err = mysql.UpdateVisitTimeIsNil(tx, ta); err != nil {
+				tx.Rollback()
 				return err
 			}
 			continue
 		}
-		err = mysql.UpdateArrangeTime(ta)
+		err = mysql.UpdateArrangeTime(tx, ta)
 		if err != nil {
 			// 回滚事务
-			mysql.TX.Rollback()
+			tx.Rollback()
 			return err
 		}
 	}
 	// 提交事务
-	mysql.TX.Commit()
+	tx.Commit()
 	return err
 }

@@ -9,7 +9,6 @@ import (
 )
 
 var (
-	TX *gorm.DB
 	DB *gorm.DB
 )
 
