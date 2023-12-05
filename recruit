@@ -822,3 +822,19 @@
 {"level":"ERROR","time":"2023-11-17T09:23:13.797+0800","caller":"mysql/admin_message.go:53","msg":"DB.First(message) failed","error":"record not found"}
 {"level":"ERROR","time":"2023-11-17T09:23:13.797+0800","caller":"controllers/admin_message.go:28","msg":"service.GetDetailMsg(&msg) failed","error":"record not found"}
 {"level":"INFO","time":"2023-12-03T22:05:08.231+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-03T22:38:07.182+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-03T22:40:11.866+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-03T22:40:50.868+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"INFO","time":"2023-12-05T11:35:51.151+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-05T11:40:13.204+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:40:18.518+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:46:16.144+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:46:40.323+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:46:42.854+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:46:51.094+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:47:00.544+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:47:15.009+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"INFO","time":"2023-12-05T11:56:47.752+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-05T11:57:02.652+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"ERROR","time":"2023-12-05T11:57:21.235+0800","caller":"controllers/interview_record.go:56","msg":"ws.ReadMessage() failed","error":"websocket: close 1005 (no status)"}
+{"level":"INFO","time":"2023-12-05T11:59:58.142+0800","caller":"logger/logger.go:44","msg":"init logger success"}

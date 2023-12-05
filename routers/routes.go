@@ -35,11 +35,11 @@ func SetupRouter() *gin.Engine {
 	user := v1.Group("/admin")
 	user.POST("/login", controllers.UserLogin)
 
+	user.GET("/InterviewRecord", controllers.InterviewRecord)
 	user.Use(middlewares.JWTAuthMiddleware())
 	{
 		// 面试记录
 		{
-			user.GET("/InterviewRecord", controllers.InterviewRecord)
 
 			user.GET("/getInterviewRecord", controllers.GetInterviewRecord)
 		}
