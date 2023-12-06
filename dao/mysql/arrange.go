@@ -8,7 +8,7 @@ import (
 
 // GetArrangeMenus 获取安排菜单
 func GetArrangeMenus() (arranges []models.Arrange, err error) {
-	err = DB.Debug().Find(&arranges).Error
+	err = DB.Find(&arranges).Error
 	return arranges, err
 }
 

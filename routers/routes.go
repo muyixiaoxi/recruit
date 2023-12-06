@@ -32,87 +32,88 @@ func SetupRouter() *gin.Engine {
 		qq.POST("/readMsg", controllers.AddReadMsg)
 	}
 
-	user := v1.Group("/admin")
-	user.POST("/login", controllers.UserLogin)
+	admin := v1.Group("/admin")
+	admin.POST("/login", controllers.UserLogin)
 
-	user.GET("/InterviewRecord", controllers.InterviewRecord)
-	user.Use(middlewares.JWTAuthMiddleware())
+	admin.GET("/InterviewRecord", controllers.InterviewRecord)
+	admin.Use(middlewares.JWTAuthMiddleware())
 	{
 		// 面试记录
+		interview := admin.Group("interviewRecord")
 		{
-
-			user.GET("/getInterviewRecord", controllers.GetInterviewRecord)
+			interview.GET("/query", controllers.GetInterviewRecord)
 		}
 
 		// 通知
 		{
 			// 根据id获取通知详细信息
-			user.GET("/getDetailsMsg", controllers.GetDetailMsg)
+			admin.GET("/getDetailsMsg", controllers.GetDetailMsg)
 
 			// 发送通知
-			user.POST("/sendMsg", controllers.SendMsg)
+			admin.POST("/sendMsg", controllers.SendMsg)
 
 			// 保存到草稿箱
-			user.POST("/addDraft", controllers.AddDraft)
+			admin.POST("/addDraft", controllers.AddDraft)
 
 			// 获取所有草稿箱
-			user.GET("/getAllDraft", controllers.GetAllDraft)
+			admin.GET("/getAllDraft", controllers.GetAllDraft)
 
 			// 修改草稿箱
-			user.PUT("/updateDraft", controllers.UpdateDraft)
+			admin.PUT("/updateDraft", controllers.UpdateDraft)
 
 			// 删除草稿箱
-			user.DELETE("/deleteDraft", controllers.DeleteMsg)
+			admin.DELETE("/deleteDraft", controllers.DeleteMsg)
 
 			// 获取所有信息
-			user.GET("/getAllMsg", controllers.UserGetAllMsg)
+			admin.GET("/getAllMsg", controllers.UserGetAllMsg)
 		}
 
 		// 学生
 		{
 			// 获取报名信息
-			user.GET("/getAllSignUp", controllers.GetAllSignUp)
+			admin.GET("/getAllSignUp", controllers.GetAllSignUp)
 
 			// 筛选
-			user.GET("/screen", controllers.ScreenStudents)
+			admin.GET("/screen", controllers.ScreenStudents)
 
 			// 根据专业分组
-			user.GET("/groupBySpecialty", controllers.GroupBySpecialty)
+			admin.GET("/groupBySpecialty", controllers.GroupBySpecialty)
 
 			// 获取详细信息
-			user.GET("/getDetailInfo", controllers.GetDetailInfo)
+			admin.GET("/getDetailInfo", controllers.GetDetailInfo)
 
 			// 修改学生状态
-			user.PUT("/updateStudentState", controllers.UpdateStudentsState)
+			admin.PUT("/updateStudentState", controllers.UpdateStudentsState)
 
 			// 同步已参加宣讲学生状态
-			user.PUT("/updateVisitState", controllers.UpdateVisitState)
+			admin.PUT("/updateVisitState", controllers.UpdateVisitState)
 
 			// 同步已面试学生状态
-			user.PUT("/updateInterviewState", controllers.UpdateInterviewState)
+			admin.PUT("/updateInterviewState", controllers.UpdateInterviewState)
 
 		}
 
 		// 用户
+		arrange := admin.Group("arrange")
 		{
 
 			// 添加安排组
-			user.POST("/addArrangeGroup", controllers.AddArrangeGroup)
+			arrange.POST("/addArrangeGroup", controllers.AddArrangeGroup)
 
 			// 修改宣讲时间
-			user.PUT("/updateVisitTime", controllers.UpdateVisitTime)
+			arrange.PUT("/updateVisitTime", controllers.UpdateVisitTime)
 
 			// 修改面试时间
-			user.PUT("/updateInterviewTime", controllers.UpdateInterviewTime)
+			arrange.PUT("/updateInterviewTime", controllers.UpdateInterviewTime)
 
 			// 取消安排组时间
-			user.POST("/cancelTime", controllers.CancelTime)
+			arrange.POST("/cancelTime", controllers.CancelTime)
 
 			// 获取安排组
-			user.GET("/getArrangeGroup", controllers.GetAllArrangeGroup)
+			arrange.GET("/getArrangeGroup", controllers.GetAllArrangeGroup)
 
 			// 获取安排组菜单
-			user.GET("/menus", controllers.GetArrangeMenus)
+			arrange.GET("/menus", controllers.GetArrangeMenus)
 
 		}
 
