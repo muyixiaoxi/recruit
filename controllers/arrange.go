@@ -8,6 +8,18 @@ import (
 	"recruit/service"
 )
 
+// GetArrangeMenus 获取安排菜单
+func GetArrangeMenus(c *gin.Context) {
+	data, err := service.GetArrangeMenus()
+	if err != nil {
+		zap.L().Error("service.GetArrangeMenus() failed", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, data)
+	return
+}
+
 // CancelTime 取消安排组消时间
 func CancelTime(c *gin.Context) {
 	par := models.ParamCancelArrangeTime{}

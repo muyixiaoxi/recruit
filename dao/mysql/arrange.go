@@ -6,6 +6,12 @@ import (
 	"recruit/models"
 )
 
+// GetArrangeMenus 获取安排菜单
+func GetArrangeMenus() (arranges []models.Arrange, err error) {
+	err = DB.Debug().Find(&arranges).Error
+	return arranges, err
+}
+
 // DeleteArrangeVisit 删除宣讲
 func DeleteArrangeVisit(tx *gorm.DB, ids []int) (err error) {
 	err = tx.Model(&models.Student{}).Joins("join arranges on arranges.id = student_arrange.arrange_id").Where("arranges.type = visit and  student_arrange.student_id in ?", ids).Error

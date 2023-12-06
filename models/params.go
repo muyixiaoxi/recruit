@@ -86,3 +86,10 @@ type ParamCancelArrangeTime struct {
 	Ids  []int `json:"ids"`
 	Type int   `json:"type" binding:"required"` // 1宣讲，2面试
 }
+
+// ParamArrangeMenus 安排菜单
+type ParamArrangeMenus struct {
+	Id     uint   `json:"id"`
+	Name   string `json:"name"`
+	Status int    `json:"status"`
+}

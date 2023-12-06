@@ -111,6 +111,9 @@ func SetupRouter() *gin.Engine {
 			// 获取安排组
 			user.GET("/getArrangeGroup", controllers.GetAllArrangeGroup)
 
+			// 获取安排组菜单
+			user.GET("/menus", controllers.GetArrangeMenus)
+
 		}
 
 	}

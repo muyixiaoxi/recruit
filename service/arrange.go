@@ -6,6 +6,25 @@ import (
 	"time"
 )
 
+// GetArrangeMenus 获取安排菜单
+func GetArrangeMenus() ([]models.ParamArrangeMenus, error) {
+	arranges, err := mysql.GetArrangeMenus()
+	if err != nil {
+		return nil, err
+	}
+	data := make([]models.ParamArrangeMenus, len(arranges))
+	for i, arrange := range arranges {
+		tmp := models.ParamArrangeMenus{
+			Id:     arrange.ID,
+			Name:   arrange.Name,
+			Status: arrange.Status,
+		}
+		data[i] = tmp
+	}
+
+	return data, err
+}
+
 // CancelTime 取消时间
 func CancelTime(par models.ParamCancelArrangeTime) (err error) {
 	// 取消面试安排记录表
