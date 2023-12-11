@@ -21,10 +21,35 @@ func SendServer(record *models.InterviewRecord) error {
 }
 
 // GetInterviewRecord 获取面试记录
-func GetInterviewRecord(id uint) (*models.Arrange, error) {
+func GetInterviewRecord(id uint) (*models.RequestRecord, error) {
 	// 获取面试组
 	arrange := &models.Arrange{
 		ID: id,
 	}
-	return mysql.GetInterviewRecord(arrange)
+
+	data, err := mysql.GetInterviewRecord(arrange)
+	if err != nil {
+		return nil, err
+	}
+	return tranRequestRecord(*data), nil
+}
+
+func tranRequestRecord(record models.Arrange) *models.RequestRecord {
+	res := models.RequestRecord{
+		ID:       record.ID,
+		Type:     record.Type,
+		Place:    record.Place,
+		Name:     record.Name,
+		Status:   record.Status,
+		Students: make([]models.RecordStudent, len(record.Students)),
+	}
+	for i, student := range record.Students {
+		child := models.RecordStudent{
+			ID:     student.ID,
+			Name:   student.Name,
+			Record: student.InterviewRecord,
+		}
+		res.Students[i] = child
+	}
+	return &res
 }

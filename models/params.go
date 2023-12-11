@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type LoginResponse struct {
 	Openid      string `json:"openid"`
@@ -92,4 +94,19 @@ type ParamArrangeMenus struct {
 	Id     uint   `json:"id"`
 	Name   string `json:"name"`
 	Status int    `json:"status"`
+}
+
+type RequestRecord struct {
+	ID       uint            `json:"id"`
+	Type     string          `json:"type"`
+	Place    string          `json:"place"`
+	Name     string          `json:"name"`
+	Status   int             `json:"status"`
+	Students []RecordStudent `json:"Students"`
+}
+
+type RecordStudent struct {
+	ID     uint   `json:"id"`
+	Name   string `json:"name"`
+	Record []*InterviewRecord
 }
