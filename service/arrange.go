@@ -6,9 +6,38 @@ import (
 	"time"
 )
 
+// GetArrangeDetail 获取面试组详细信息
+func GetArrangeDetail(id uint) (models.Arrange, error) {
+	return mysql.GetArrangeDetail(id)
+}
+
+// DeleteArrange 删除安排组
+func DeleteArrange(ids []int) error {
+	tx := mysql.DB.Begin()
+	// 删除安排组
+	if err := mysql.DeleteArranges(tx, ids); err != nil {
+		tx.Rollback()
+		return err
+	}
+	// 删除 安排组-学生
+	err := mysql.DeleteArrangeStudents(tx, ids)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+	// 学生状态-1
+	err = mysql.StudentStatusSub(tx, ids)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+	tx.Commit()
+	return nil
+}
+
 // GetArrangeMenus 获取安排菜单
-func GetArrangeMenus() ([]models.ParamArrangeMenus, error) {
-	arranges, err := mysql.GetArrangeMenus()
+func GetArrangeMenus(t int) ([]models.ParamArrangeMenus, error) {
+	arranges, err := mysql.GetArrangeMenus(t)
 	if err != nil {
 		return nil, err
 	}
@@ -18,6 +47,7 @@ func GetArrangeMenus() ([]models.ParamArrangeMenus, error) {
 			Id:     arrange.ID,
 			Name:   arrange.Name,
 			Status: arrange.Status,
+			Type:   arrange.Type,
 		}
 		data[i] = tmp
 	}
@@ -29,6 +59,7 @@ func GetArrangeMenus() ([]models.ParamArrangeMenus, error) {
 func CancelTime(par models.ParamCancelArrangeTime) (err error) {
 	// 取消面试安排记录表
 	// 修改学生面试时间表
+	// 修改学生状态
 	tx := mysql.DB.Begin()
 
 	if par.Type == 1 {
@@ -53,6 +84,11 @@ func CancelTime(par models.ParamCancelArrangeTime) (err error) {
 			tx.Rollback()
 			return err
 		}
+	}
+	err = mysql.StudentStatusSub(tx, par.Ids)
+	if err != nil {
+		tx.Rollback()
+		return err
 	}
 	tx.Commit()
 	return err
@@ -97,6 +133,8 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 
 	var timeArranges []*models.TimeArrange
 
+	ids := []uint{}
+
 	// 安排宣讲
 	if par.Type == "visit" {
 		// 获取人员列表
@@ -123,11 +161,11 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 			}
 			mysql.UpdateArrangeTime(tx, ta)
 			timeArranges = append(timeArranges, ta)
+			ids = append(ids, s.ID)
 			n++
 		}
 	} else {
 		// 获取人员列表
-		// 如果需要不需要宣讲
 		students, err := mysql.GetInterviewStudents(par.NeedVisit)
 		if len(students) == 0 {
 			return nil, tx.Rollback().Error
@@ -151,6 +189,7 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 			}
 			mysql.UpdateArrangeTime(tx, ta)
 			timeArranges = append(timeArranges, ta)
+			ids = append(ids, s.ID)
 			n++
 		}
 	}
@@ -167,6 +206,27 @@ func AddArrangeGroup(par *models.ParamArrangeGroup) ([]*models.Arrange, error) {
 			s.TimeArrange = timeArranges[i]
 		}
 	}
+	// 学生状态+1
+	err := mysql.StudentStatusAdd(tx, ids)
+	if err != nil {
+		tx.Rollback()
+		return nil, err
+	}
+	// 如果是面试初始化面试表
+	if par.Type == "interview" {
+		for _, arrange := range arranges {
+			ids := make([]uint, len(arrange.Students))
+			for i, student := range arrange.Students {
+				ids[i] = student.ID
+			}
+			err := InterviewRecordInit(tx, arrange.ID, ids)
+			if err != nil {
+				tx.Rollback()
+				return nil, err
+			}
+		}
+	}
+
 	return arranges, tx.Commit().Error
 }
 

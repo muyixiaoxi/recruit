@@ -5,7 +5,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"recruit/models"
 	"recruit/settings"
 )
 
@@ -32,14 +31,14 @@ func Init(cfg *settings.MySQLConfig) (err error) {
 	}
 
 	//自动建表
-	DB.AutoMigrate(&models.Arrange{})
-	DB.AutoMigrate(&models.InterviewRecord{})
-	DB.AutoMigrate(&models.Message{})
-	DB.AutoMigrate(&models.ReadMessage{})
-	DB.AutoMigrate(&models.StudentArrange{})
-	DB.AutoMigrate(&models.Student{})
-	DB.AutoMigrate(&models.TimeArrange{})
-	DB.AutoMigrate(&models.User{})
+	//DB.AutoMigrate(&models.Arrange{})
+	//DB.AutoMigrate(&models.InterviewRecord{})
+	//DB.AutoMigrate(&models.Message{})
+	//DB.AutoMigrate(&models.ReadMessage{})
+	//DB.AutoMigrate(&models.StudentArrange{})
+	//DB.AutoMigrate(&models.Student{})
+	//DB.AutoMigrate(&models.TimeArrange{})
+	//DB.AutoMigrate(&models.User{})
 
 	return
 }

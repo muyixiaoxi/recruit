@@ -93,7 +93,7 @@ func SetupRouter() *gin.Engine {
 
 		}
 
-		// 用户
+		// 安排组
 		arrange := admin.Group("arrange")
 		{
 
@@ -107,7 +107,7 @@ func SetupRouter() *gin.Engine {
 			arrange.PUT("/updateInterviewTime", controllers.UpdateInterviewTime)
 
 			// 取消安排组时间
-			arrange.POST("/cancelTime", controllers.CancelTime)
+			arrange.DELETE("/cancelTime", controllers.CancelTime)
 
 			// 获取安排组
 			arrange.GET("/getArrangeGroup", controllers.GetAllArrangeGroup)
@@ -115,6 +115,17 @@ func SetupRouter() *gin.Engine {
 			// 获取安排组菜单
 			arrange.GET("/menus", controllers.GetArrangeMenus)
 
+			// 获取安排组详细信息
+			arrange.GET("/detail", controllers.GetArrangeDetail)
+
+			// 删除安排组
+			arrange.DELETE("/delete", controllers.DeleteArrange)
+
+			// 添加列
+			arrange.POST("/col", controllers.AddContentId)
+
+			// 删除列
+			arrange.DELETE("/col", controllers.DeleteContentId)
 		}
 
 	}

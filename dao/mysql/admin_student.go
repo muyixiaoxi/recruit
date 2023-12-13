@@ -6,6 +6,16 @@ import (
 	"recruit/models"
 )
 
+// StudentStatusAdd 学生状态+1
+func StudentStatusAdd(tx *gorm.DB, ids []uint) error {
+	return tx.Model(&models.Student{}).Where("id in ?", ids).Update("state", gorm.Expr("state+1")).Error
+}
+
+// StudentStatusSub 学生状态-1
+func StudentStatusSub(tx *gorm.DB, ids []int) error {
+	return tx.Model(&models.Student{}).Where("id in ?", ids).Update("state", gorm.Expr("state-1")).Error
+}
+
 // UpdateInterviewState 同步学生面试状况
 func UpdateInterviewState() error {
 	res := DB.Exec("UPDATE `students` JOIN time_arranges ON students.id = time_arranges.student_id SET `state`=3 WHERE time_arranges.interview < NOW()")

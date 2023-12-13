@@ -6,9 +6,33 @@ import (
 	"recruit/models"
 )
 
+// GetArrangeDetail 获取面试组详细信息
+func GetArrangeDetail(id uint) (arrange models.Arrange, err error) {
+	err = DB.Where("id = ?", id).Preload("Students.TimeArrange").First(&arrange).Error
+	return arrange, err
+}
+
+// DeleteArrangeStudents 删除学生
+func DeleteArrangeStudents(tx *gorm.DB, ids []int) error {
+	err := tx.Model(&models.StudentArrange{}).Delete("arrange_id in ?", ids).Error
+	return err
+}
+
+// DeleteArranges 删除
+func DeleteArranges(tx *gorm.DB, ids []int) error {
+	err := tx.Model(&models.Arrange{}).Delete("id in ?", ids).Error
+	return err
+}
+
 // GetArrangeMenus 获取安排菜单
-func GetArrangeMenus() (arranges []models.Arrange, err error) {
-	err = DB.Where("type = 'interview'").Find(&arranges).Error
+func GetArrangeMenus(t int) (arranges []models.Arrange, err error) {
+	if t == 1 {
+		err = DB.Find(&arranges).Error
+	} else if t == 2 {
+		err = DB.Where("type = 'interview'").Find(&arranges).Error
+	} else if t == 3 {
+		err = DB.Where("type = 'visit'").Find(&arranges).Error
+	}
 	return arranges, err
 }
 

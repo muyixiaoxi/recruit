@@ -71,7 +71,7 @@ type ParamLogin struct {
 	Avatar string `json:"avatar"` // 头像
 }
 
-type ParamMsg struct {
+type ParamIds struct {
 	Id []int `json:"id"`
 }
 
@@ -94,6 +94,7 @@ type ParamArrangeMenus struct {
 	Id     uint   `json:"id"`
 	Name   string `json:"name"`
 	Status int    `json:"status"`
+	Type   string `json:"type"`
 }
 
 type RequestRecord struct {

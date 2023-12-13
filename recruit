@@ -862,3 +862,38 @@
 {"level":"ERROR","time":"2023-12-06T22:18:48.699+0800","caller":"mysql/interview_recored.go:24","msg":"DB.Preload(\"Students\").First(arrange) failed","error":"sql: Scan error on column index 0, name \"id\": unsupported Scan, storing driver.Value type int64 into type *models.InterviewRecord"}
 {"level":"ERROR","time":"2023-12-06T22:18:48.700+0800","caller":"controllers/interview_record.go:97","msg":"service.GetAllInterviewRecord() failed","error":"sql: Scan error on column index 0, name \"id\": unsupported Scan, storing driver.Value type int64 into type *models.InterviewRecord"}
 {"level":"INFO","time":"2023-12-11T23:01:19.129+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-11T23:11:42.822+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T14:28:58.559+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T14:31:55.330+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T14:38:42.915+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:15:37.865+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:23:47.097+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:25:15.153+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:28:14.992+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:30:29.732+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T15:33:20.886+0800","caller":"controllers/arrange.go:91","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1205 (HY000): Lock wait timeout exceeded; try restarting transaction"}
+{"level":"INFO","time":"2023-12-13T15:34:19.187+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:35:46.702+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:38:40.555+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:43:47.760+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:49:45.743+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T15:52:46.050+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T16:05:21.532+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T16:05:53.441+0800","caller":"controllers/arrange.go:94","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`recruit`.`interview_records`, CONSTRAINT `fk_students_interview_record` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))"}
+{"level":"INFO","time":"2023-12-13T16:07:41.634+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T16:07:59.840+0800","caller":"controllers/arrange.go:94","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`recruit`.`interview_records`, CONSTRAINT `fk_students_interview_record` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))"}
+{"level":"INFO","time":"2023-12-13T16:10:38.658+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T16:10:55.582+0800","caller":"controllers/arrange.go:94","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`recruit`.`interview_records`, CONSTRAINT `fk_students_interview_record` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))"}
+{"level":"INFO","time":"2023-12-13T16:11:44.602+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T16:12:50.316+0800","caller":"controllers/arrange.go:94","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`recruit`.`interview_records`, CONSTRAINT `fk_students_interview_record` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))"}
+{"level":"INFO","time":"2023-12-13T16:16:17.562+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T16:16:25.850+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T20:15:37.900+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T20:16:03.140+0800","caller":"controllers/arrange.go:94","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`recruit`.`interview_records`, CONSTRAINT `fk_students_interview_record` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))"}
+{"level":"INFO","time":"2023-12-13T20:18:59.532+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2023-12-13T20:19:16.682+0800","caller":"controllers/arrange.go:94","msg":"service.SetArrangeGroup(&par) failed","error":"Error 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`recruit`.`interview_records`, CONSTRAINT `fk_students_interview_record` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))"}
+{"level":"INFO","time":"2023-12-13T20:23:55.736+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T20:36:08.947+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T20:36:43.100+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T20:45:03.953+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2023-12-13T21:07:01.072+0800","caller":"logger/logger.go:44","msg":"init logger success"}
