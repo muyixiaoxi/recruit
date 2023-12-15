@@ -3,7 +3,6 @@
     ENV MYPATH /workspace/local/
     WORKDIR  $MYPATH
 
-    RUN yum -y --disablerepo=appstream update \
     RUN yum -y update \
     && yum -y install vim \
     && yum -y install git \
