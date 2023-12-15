@@ -6,11 +6,41 @@ import (
 	"go.uber.org/zap"
 	"recruit/models"
 	"recruit/service"
+	"strconv"
 )
 
-// GetArrangeMenus 获取安排菜单
+// GetArrangeDetail 获取安排组详细信息
+func GetArrangeDetail(c *gin.Context) {
+	par := c.Query("id")
+	id, _ := strconv.Atoi(par)
+	data, err := service.GetArrangeDetail(uint(id))
+	if err != nil {
+		zap.L().Error("service.GetArrangeDetail(id) failed", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, data)
+}
+
+// DeleteArrange 删除安排组
+func DeleteArrange(c *gin.Context) {
+	var par models.ParamIds
+	if err := c.ShouldBind(&par); err != nil {
+		ResponseError(c, CodeInvalidParam)
+		return
+	}
+	if err := service.DeleteArrange(par.Id); err != nil {
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseError(c, CodeSuccess)
+}
+
+// GetArrangeMenus 获取面试安排菜单
 func GetArrangeMenus(c *gin.Context) {
-	data, err := service.GetArrangeMenus()
+	par := c.Query("type")
+	t, _ := strconv.Atoi(par)
+	data, err := service.GetArrangeMenus(t)
 	if err != nil {
 		zap.L().Error("service.GetArrangeMenus() failed", zap.Error(err))
 		ResponseError(c, CodeServerBusy)
@@ -20,7 +50,7 @@ func GetArrangeMenus(c *gin.Context) {
 	return
 }
 
-// CancelTime 取消安排组消时间
+// CancelTime 删除某些学生已有安排组
 func CancelTime(c *gin.Context) {
 	par := models.ParamCancelArrangeTime{}
 	if err := c.ShouldBind(&par); err != nil {

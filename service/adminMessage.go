@@ -30,7 +30,7 @@ func GetDetailMsg(message *models.Message) (err error) {
 
 	} else { // 给部分学生发送消息
 		sids := strings.Split(message.StudentsID, ",")
-		
+
 		// 获取已读
 		read, err := mysql.GetReadStudentByMessageId(message)
 		if err != nil {
@@ -71,7 +71,7 @@ func GetDetailMsg(message *models.Message) (err error) {
 }
 
 // DeleteMsg 删除草稿箱
-func DeleteMsg(par *models.ParamMsg) (err error) {
+func DeleteMsg(par *models.ParamIds) (err error) {
 	// 遍历删除
 	for _, id := range par.Id {
 		draft := models.Message{Model: gorm.Model{ID: uint(id)}, State: 0}

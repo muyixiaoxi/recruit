@@ -35,21 +35,21 @@ func InterviewRecord(c *gin.Context) {
 	service.OnlineUser[uid] = userChan
 
 	defer func() {
-		// 关闭WebSocket连接
-		ws.Close()
 		// 删除用户通道
 		close(userChan)
 		delete(service.OnlineUser, uid)
+		// 关闭WebSocket连接
+		ws.Close()
 	}()
 
 	// 处理WebSocket消息
-	go SendServer(ws)
-	go ReceiveServer(ws, userChan)
+	go sendServer(ws, uid)
+	go receiveServer(ws, userChan)
 	select {} // 阻塞函数
 }
 
-// SendServer 向服务端发送
-func SendServer(ws *websocket.Conn) {
+// sendServer 接收
+func sendServer(ws *websocket.Conn, uid uint) {
 	for {
 		_, p, err := ws.ReadMessage()
 		if err != nil {
@@ -65,6 +65,7 @@ func SendServer(ws *websocket.Conn) {
 			})
 			continue
 		}
+		per.UserId = uid
 		service.SendServer(&per)
 		err = ws.WriteJSON(per)
 		if err != nil {
@@ -74,11 +75,15 @@ func SendServer(ws *websocket.Conn) {
 	}
 }
 
-// ReceiveServer 接收服务端消息
-func ReceiveServer(ws *websocket.Conn, userChan chan models.InterviewRecord) {
+// receiveServer 广播服务端消息
+func receiveServer(ws *websocket.Conn, userChan chan models.InterviewRecord) {
 	for {
+		data, ok := <-userChan
+		if !ok {
+			return
+		}
 		wsMutex.Lock()
-		err := ws.WriteJSON(<-userChan)
+		err := ws.WriteJSON(data)
 		wsMutex.Unlock()
 		fmt.Println("ReceiveServer接收")
 		if err != nil {
@@ -99,4 +104,30 @@ func GetInterviewRecord(c *gin.Context) {
 		return
 	}
 	ResponseSuccess(c, data)
+}
+
+// AddContentId 添加列
+func AddContentId(c *gin.Context) {
+	par := c.Query("id")
+	id, _ := strconv.Atoi(par)
+	if err := service.AddContentId(uint(id)); err != nil {
+		zap.L().Error("service.AddContentId(uint(id)) failed", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, nil)
+}
+
+// DeleteContentId 删除列
+func DeleteContentId(c *gin.Context) {
+	para := c.Query("arrange_id")
+	parc := c.Query("content_id")
+	arrange, _ := strconv.Atoi(para)
+	content, _ := strconv.Atoi(parc)
+	err := service.DeleteContentId(arrange, content)
+	if err != nil {
+		zap.L().Error("service.DeleteContentId(arrange,content) failed", zap.Error(err))
+		ResponseError(c, CodeSuccess)
+	}
+	ResponseSuccess(c, nil)
 }

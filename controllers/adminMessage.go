@@ -38,7 +38,7 @@ func GetDetailMsg(c *gin.Context) {
 
 // DeleteMsg 删除通知
 func DeleteMsg(c *gin.Context) {
-	var draft models.ParamMsg
+	var draft models.ParamIds
 	if err := c.ShouldBind(&draft); err != nil {
 		zap.L().Error("c.ShouldBind(&draft) failed", zap.Error(err))
 		ResponseError(c, CodeInvalidParam)

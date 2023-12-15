@@ -6,9 +6,27 @@ import (
 	"recruit/models"
 )
 
+// GetArrangeDetail 获取面试组详细信息
+func GetArrangeDetail(id uint) (arrange models.Arrange, err error) {
+	err = DB.Where("id = ?", id).Preload("Students.TimeArrange").First(&arrange).Error
+	return arrange, err
+}
+
+// DeleteArranges 删除
+func DeleteArranges(tx *gorm.DB, ids []int) error {
+	err := tx.Where("id in ?", ids).Delete(&models.Arrange{}).Error
+	return err
+}
+
 // GetArrangeMenus 获取安排菜单
-func GetArrangeMenus() (arranges []models.Arrange, err error) {
-	err = DB.Debug().Find(&arranges).Error
+func GetArrangeMenus(t int) (arranges []models.Arrange, err error) {
+	if t == 1 {
+		err = DB.Find(&arranges).Error
+	} else if t == 2 {
+		err = DB.Where("type = 'interview'").Find(&arranges).Error
+	} else if t == 3 {
+		err = DB.Where("type = 'visit'").Find(&arranges).Error
+	}
 	return arranges, err
 }
 
@@ -24,38 +42,11 @@ func DeleteArrangeInterview(tx *gorm.DB, ids []int) (err error) {
 	return err
 }
 
-// UpdateInterviewTimeIsNil 更新面试时间为空
-func UpdateInterviewTimeIsNil(tx *gorm.DB, arrange *models.TimeArrange) (err error) {
-	err = tx.Table("time_arranges").Where("student_id = ?", arrange.StudentID).Update("interview", nil).Error
-	if err != nil {
-		zap.L().Error("TX.Table(\"time_arranges\").Where(\"student_id = ?\", arrange.StudentID).Update(\"interview\", nil) failed", zap.Error(err))
-	}
-	return err
-}
-
-// UpdateVisitTimeIsNil 更新宣讲时间为空
-func UpdateVisitTimeIsNil(tx *gorm.DB, arrange *models.TimeArrange) (err error) {
-	err = tx.Table("time_arranges").Where("student_id = ?", arrange.StudentID).Update("visit", nil).Error
-	if err != nil {
-		zap.L().Error("TX.Table(\"time_arranges\").Where(\"student_id = ?\", arrange.StudentID).Update(\"visit\", nil) failed", zap.Error(err))
-	}
-	return err
-}
-
 // GetAllArrangeGroup 获取所有面试组
 func GetAllArrangeGroup() (arr []*models.Arrange, err error) {
 	err = DB.Preload("Students").Preload("Students.TimeArrange").Find(&arr).Error
 	if err != nil {
 		zap.L().Error("DB.Preload(\"Students\").Find(arr) failed", zap.Error(err))
-	}
-	return
-}
-
-// AddStudentArrange 添加学生面试关系表
-func AddStudentArrange(tx *gorm.DB, sA *models.StudentArrange) (err error) {
-	err = tx.Create(sA).Error
-	if err != nil {
-		zap.L().Error("DB.Create(sA) failed", zap.Error(err))
 	}
 	return
 }

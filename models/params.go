@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type LoginResponse struct {
 	Openid      string `json:"openid"`
@@ -69,7 +71,7 @@ type ParamLogin struct {
 	Avatar string `json:"avatar"` // 头像
 }
 
-type ParamMsg struct {
+type ParamIds struct {
 	Id []int `json:"id"`
 }
 
@@ -83,8 +85,9 @@ type ParamGroupBySpecialty struct {
 }
 
 type ParamCancelArrangeTime struct {
-	Ids  []int `json:"ids"`
-	Type int   `json:"type" binding:"required"` // 1宣讲，2面试
+	ArrangeID uint  `json:"arrange_id"`
+	Ids       []int `json:"ids"`
+	Type      int   `json:"type" binding:"required"` // 1宣讲，2面试
 }
 
 // ParamArrangeMenus 安排菜单
@@ -92,4 +95,20 @@ type ParamArrangeMenus struct {
 	Id     uint   `json:"id"`
 	Name   string `json:"name"`
 	Status int    `json:"status"`
+	Type   string `json:"type"`
+}
+
+type RequestRecord struct {
+	ID       uint            `json:"id"`
+	Type     string          `json:"type"`
+	Place    string          `json:"place"`
+	Name     string          `json:"name"`
+	Status   int             `json:"status"`
+	Students []RecordStudent `json:"Students"`
+}
+
+type RecordStudent struct {
+	ID     uint   `json:"id"`
+	Name   string `json:"name"`
+	Record []*InterviewRecord
 }
