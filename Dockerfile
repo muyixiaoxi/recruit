@@ -1,6 +1,6 @@
- FROM centos:latest
+    FROM centos:latest
 
-    ENV MYPATH /usr/local/project
+    ENV MYPATH /workspace/local/
     WORKDIR  $MYPATH
 
     RUN yum -y update \

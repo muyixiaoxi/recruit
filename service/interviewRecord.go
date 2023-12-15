@@ -109,11 +109,16 @@ func AddContentId(id uint) error {
 		return err
 	}
 	n, err := mysql.GetInterviewRecordCol(id)
-	cId := uint(n)
+	cId := uint(n) + 1
 	if err != nil {
 		return err
 	}
 	inter := make([]models.InterviewRecord, len(arrange.Students)+1)
+	inter[len(arrange.Students)] = models.InterviewRecord{
+		ArrangeId: id,
+		StudentID: 0,
+		ContentId: cId,
+	}
 	for i, student := range arrange.Students {
 		inter[i] = models.InterviewRecord{
 			ArrangeId: id,

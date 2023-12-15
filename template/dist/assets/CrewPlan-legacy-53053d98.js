@@ -1,0 +1,1 @@
+System.register(["./index-legacy-00b339ec.js"],(function(e,t){"use strict";var n,r,u;return{setters:[function(e){n=e._,r=e.b,u=e.c}],execute:function(){e("default",n({},[["render",function(e,t){return r(),u("div",null,"展示面试信息，和宣讲信息，并且能够修改")}]]))}}}));

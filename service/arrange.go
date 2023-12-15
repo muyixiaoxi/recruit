@@ -57,11 +57,15 @@ func GetArrangeMenus(t int) ([]models.ParamArrangeMenus, error) {
 
 // CancelTime 取消时间
 func CancelTime(par models.ParamCancelArrangeTime) (err error) {
-	// 取消面试安排记录表
+	// 删除面试安排记录表记录
 	// 修改学生面试时间表
 	// 修改学生状态
 	tx := mysql.DB.Begin()
-
+	err = mysql.DeleteStudentArrangesByTx(tx, par.ArrangeID, par.Ids)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
 	if par.Type == 1 {
 		err = mysql.DeleteArrangeVisit(tx, par.Ids)
 		if err != nil {

@@ -1,0 +1,1 @@
+System.register(["./index-legacy-00b339ec.js"],(function(e,t){"use strict";var n,r;return{setters:[function(e){n=e.aS,r=e.r}],execute:function(){e("I",n("informlist",(function(){var e=r({});return{sketch:e,Anew:function(t){e.value=t}}}),{persist:!0}))}}}));

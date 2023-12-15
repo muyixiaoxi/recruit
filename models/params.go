@@ -85,8 +85,9 @@ type ParamGroupBySpecialty struct {
 }
 
 type ParamCancelArrangeTime struct {
-	Ids  []int `json:"ids"`
-	Type int   `json:"type" binding:"required"` // 1宣讲，2面试
+	ArrangeID uint  `json:"arrange_id"`
+	Ids       []int `json:"ids"`
+	Type      int   `json:"type" binding:"required"` // 1宣讲，2面试
 }
 
 // ParamArrangeMenus 安排菜单

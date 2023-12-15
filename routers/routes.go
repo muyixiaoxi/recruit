@@ -12,6 +12,9 @@ func SetupRouter() *gin.Engine {
 	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
 	r.Use(middlewares.Cors())
+
+	r.Static("./template/dist", "./template/dist")
+
 	v1 := r.Group("/march")
 
 	qq := v1.Group("/qq")
@@ -34,13 +37,12 @@ func SetupRouter() *gin.Engine {
 
 	admin := v1.Group("/admin")
 	admin.POST("/login", controllers.UserLogin)
-
-	admin.GET("/InterviewRecord", controllers.InterviewRecord)
 	admin.Use(middlewares.JWTAuthMiddleware())
 	{
 		// 面试记录
 		interview := admin.Group("interviewRecord")
 		{
+			interview.GET("/InterviewRecord", controllers.InterviewRecord)
 			interview.GET("/query", controllers.GetInterviewRecord)
 		}
 
@@ -106,7 +108,7 @@ func SetupRouter() *gin.Engine {
 			// 修改面试时间
 			arrange.PUT("/updateInterviewTime", controllers.UpdateInterviewTime)
 
-			// 取消安排组时间
+			// 删除某些学生已有安排
 			arrange.DELETE("/cancelTime", controllers.CancelTime)
 
 			// 获取安排组
