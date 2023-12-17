@@ -87,12 +87,8 @@ func SetupRouter() *gin.Engine {
 			// 修改学生状态
 			admin.PUT("/updateStudentState", controllers.UpdateStudentsState)
 
-			// 同步已参加宣讲学生状态
-			admin.PUT("/updateVisitState", controllers.UpdateVisitState)
-
-			// 同步已面试学生状态
-			admin.PUT("/updateInterviewState", controllers.UpdateInterviewState)
-
+			// 进七天人数
+			admin.GET("/getStudentInSeven", controllers.GetStudentInSeven)
 		}
 
 		// 安排组

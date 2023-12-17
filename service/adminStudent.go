@@ -5,14 +5,9 @@ import (
 	"recruit/models"
 )
 
-// UpdateInterviewState 同步学生面试状况
-func UpdateInterviewState() error {
-	return mysql.UpdateInterviewState()
-}
-
-// UpdateVisitState 同步学生宣讲状况
-func UpdateVisitState() error {
-	return mysql.UpdateVisitState()
+// GetStudentInSeven  获取七天内面试和宣讲的学生
+func GetStudentInSeven() ([]models.ReportData, error) {
+	return mysql.GetStudentInSeven()
 }
 
 // 查询的专业
