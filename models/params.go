@@ -112,3 +112,8 @@ type RecordStudent struct {
 	Name   string `json:"name"`
 	Record []*InterviewRecord
 }
+
+type ReportData struct {
+	Date  string
+	Count int
+}

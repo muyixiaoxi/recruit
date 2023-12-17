@@ -5,6 +5,16 @@ import (
 	"recruit/service"
 )
 
+// GetStudentInSeven  获取七天内学生
+func GetStudentInSeven(c *gin.Context) {
+	data, err := service.GetStudentInSeven()
+	if err != nil {
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, data)
+}
+
 // GroupBySpecialty 根据专业分组
 func GroupBySpecialty(c *gin.Context) {
 	data, err := service.GroupBySpecialty()
@@ -13,24 +23,4 @@ func GroupBySpecialty(c *gin.Context) {
 		return
 	}
 	ResponseSuccess(c, data)
-}
-
-// UpdateVisitState 同步学生宣讲状况
-func UpdateVisitState(c *gin.Context) {
-	err := service.UpdateVisitState()
-	if err != nil {
-		ResponseError(c, CodeServerBusy)
-		return
-	}
-	ResponseSuccess(c, CodeSuccess)
-}
-
-// UpdateInterviewState 同步学生面试状况
-func UpdateInterviewState(c *gin.Context) {
-	err := service.UpdateInterviewState()
-	if err != nil {
-		ResponseError(c, CodeServerBusy)
-		return
-	}
-	ResponseSuccess(c, CodeSuccess)
 }

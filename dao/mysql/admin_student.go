@@ -6,6 +6,16 @@ import (
 	"recruit/models"
 )
 
+// GetStudentInSeven 获取七天内报道的学生
+func GetStudentInSeven() ([]models.ReportData, error) {
+	var data []models.ReportData
+
+	// 使用 RAW SQL 查询
+	err := DB.Raw("SELECT DATE(created_at) as date, COUNT(*) as count FROM students WHERE created_at >= CURDATE() - INTERVAL 6 DAY AND state = 1 GROUP BY DATE(created_at) ORDER BY DATE(created_at)").Scan(&data).Error
+
+	return data, err
+}
+
 // StudentStatusAdd 学生状态+1
 func StudentStatusAdd(tx *gorm.DB, ids []uint) error {
 	return tx.Model(&models.Student{}).Where("id in ?", ids).Update("state", gorm.Expr("state+1")).Error
@@ -14,24 +24,6 @@ func StudentStatusAdd(tx *gorm.DB, ids []uint) error {
 // StudentStatusSub 学生状态-1
 func StudentStatusSub(tx *gorm.DB, ids []int) error {
 	return tx.Model(&models.Student{}).Where("id in ?", ids).Update("state", gorm.Expr("state-1")).Error
-}
-
-// UpdateInterviewState 同步学生面试状况
-func UpdateInterviewState() error {
-	res := DB.Exec("UPDATE `students` JOIN time_arranges ON students.id = time_arranges.student_id SET `state`=3 WHERE time_arranges.interview < NOW()")
-	if res.Error != nil {
-		zap.L().Error("DB.Exec(\"UPDATE `students` JOIN time_arranges ON students.id = time_arranges.student_id SET `state`=3 WHERE time_arranges.interview < NOW()\") failed", zap.Error(res.Error))
-	}
-	return res.Error
-}
-
-// UpdateVisitState 同步学生宣讲状况
-func UpdateVisitState() error {
-	res := DB.Exec("UPDATE `students` JOIN time_arranges ON students.id = time_arranges.student_id SET `state`=2 WHERE time_arranges.visit < NOW() AND students.id = 1;")
-	if res.Error != nil {
-		zap.L().Error("DB.Exec(\"UPDATE `students` JOIN time_arranges ON students.id = time_arranges.student_id SET `state`=2 WHERE time_arranges.visit < NOW() AND students.id = 1;\") failed", zap.Error(res.Error))
-	}
-	return res.Error
 }
 
 // GetAllSignUpAndTimeArrange 获取所有已报名学生及安排表
