@@ -11,7 +11,7 @@ func GetStudentInSeven() ([]models.ReportData, error) {
 	var data []models.ReportData
 
 	// 使用 RAW SQL 查询
-	err := DB.Raw("SELECT DATE(created_at) as date, COUNT(*) as count FROM students WHERE created_at >= CURDATE() - INTERVAL 6 DAY GROUP BY DATE(created_at) ORDER BY DATE(created_at)").Scan(&data).Error
+	err := DB.Raw("SELECT DATE(created_at) as date, COUNT(*) as count FROM students WHERE created_at >= CURDATE() - INTERVAL 6 DAY AND state = 1 GROUP BY DATE(created_at) ORDER BY DATE(created_at)").Scan(&data).Error
 
 	return data, err
 }
