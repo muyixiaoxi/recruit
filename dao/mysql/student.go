@@ -60,3 +60,9 @@ func UpdateStudent(student *models.Student) error {
 	res := DB.Updates(student)
 	return res.Error
 }
+
+// GetStudentMail 获取邮箱
+func GetStudentMail(ids []uint) (mails []string, err error) {
+	err = DB.Select("").Find(ids).Error
+	return
+}

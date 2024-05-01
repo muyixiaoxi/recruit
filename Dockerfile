@@ -1,6 +1,6 @@
     FROM centos:7
 
-    ENV MYPATH /workspace/recruit
+    ENV MYPATH /root/workspace/recruit
     WORKDIR  $MYPATH
 
     RUN yum -y update \
