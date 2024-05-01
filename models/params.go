@@ -117,3 +117,8 @@ type ReportData struct {
 	Date  string
 	Count int
 }
+
+type SendMailRequest struct {
+	Ids     []uint
+	message string
+}
