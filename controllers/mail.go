@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"recruit/models"
+	"recruit/service"
 )
 
 func SendMail(c *gin.Context) {
@@ -13,5 +14,7 @@ func SendMail(c *gin.Context) {
 		ResponseError(c, CodeInvalidParam)
 		return
 	}
+	failIds, _ := service.SendMail(*req)
 
+	ResponseSuccess(c, models.SendMailResponse{SendFailIds: failIds})
 }

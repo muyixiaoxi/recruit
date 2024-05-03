@@ -62,7 +62,7 @@ func UpdateStudent(student *models.Student) error {
 }
 
 // GetStudentMail 获取邮箱
-func GetStudentMail(ids []uint) (mails []string, err error) {
-	err = DB.Select("").Find(ids).Error
+func GetStudentMail(ids []uint) (mails []models.Student, err error) {
+	err = DB.Model(models.Student{}).Select("id,mail,name").Where("id in ?", ids).Scan(&mails).Error
 	return
 }

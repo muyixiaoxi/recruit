@@ -119,6 +119,11 @@ type ReportData struct {
 }
 
 type SendMailRequest struct {
-	Ids     []uint
-	message string
+	Ids     []uint `json:"ids"`
+	Subject string `json:"subject"`
+	Message string `json:"message"`
+}
+
+type SendMailResponse struct {
+	SendFailIds []uint `json:"send_fail_ids"`
 }

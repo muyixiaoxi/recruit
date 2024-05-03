@@ -7,11 +7,12 @@ import (
 
 type Student struct {
 	gorm.Model
-	Openid           string             `json:"openid,omitempty" form:"openid" gorm:"unique;not null"`
-	StudentNumber    string             `json:"student_number,omitempty" form:"student_number" gorm:"type:varchar(11)" binding:"required"`
+	Openid           string             `json:"openid,omitempty" form:"openid" gorm:"unique;not null;comment:'openId'"`
+	StudentNumber    string             `json:"student_number,omitempty" form:"student_number" gorm:"type:varchar(11);" binding:"required"`
 	Name             string             `json:"name,omitempty" form:"name" binding:"required"`
 	Gender           string             `json:"gender,omitempty" form:"gender" gorm:"type:varchar(1)" binding:"required"`
 	Class            string             `json:"class,omitempty" form:"class" binding:"required"`
+	Mail             string             `json:"mail,omitempty" gorm:"type:varchar(50);comment:'邮箱'"`
 	QQ               string             `json:"QQ,omitempty" form:"QQ" gorm:"type:varchar(10)" binding:"required"`
 	Phone            string             `json:"phone,omitempty" form:"phone" gorm:"type:varchar(11)" binding:"required"`
 	Job              string             `json:"job,omitempty" form:"job" `

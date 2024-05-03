@@ -14,6 +14,7 @@ type AppConfig struct {
 	*MySQLConfig   `mapstructure:"mysql"`
 	*RedisConfig   `mapstructure:"redis"`
 	*UploadImg     `mapstructure:"uploadImg"`
+	*Mail          `mapstructure:"mail"`
 }
 type ProjectConfig struct {
 	Name string `mapstructure:"name"`
@@ -54,6 +55,12 @@ type UploadImg struct {
 	ImageAllowExits []string `mapstructure:"imageAllowExits"`
 	TimeFormat      string   `mapstructure:"timeFormat"`
 	RuntimeRootPath string   `mapstructure:"runtimeRootPath"`
+}
+type Mail struct {
+	User string `mapstructure:"user"`
+	Pass string `mapstructure:"pass"`
+	Host string `mapstructure:"host"`
+	Port int    `mapstructure:"port"`
 }
 
 func Init() error {

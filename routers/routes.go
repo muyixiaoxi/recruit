@@ -68,6 +68,9 @@ func SetupRouter() *gin.Engine {
 
 			// 获取所有信息
 			admin.GET("/getAllMsg", controllers.UserGetAllMsg)
+
+			// 发送邮件
+			admin.POST("/sendMail", controllers.SendMail)
 		}
 
 		// 学生

@@ -1,0 +1,9 @@
+{"level":"INFO","time":"2024-05-03T10:31:43.847+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"ERROR","time":"2024-05-03T10:36:42.258+0800","caller":"controllers/user.go:52","msg":"err := c.ShouldBind(&user) failed","error":"Key: 'User.Mobile' Error:Field validation for 'Mobile' failed on the 'required' tag"}
+{"level":"INFO","time":"2024-05-03T10:38:34.933+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2024-05-03T10:41:54.494+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2024-05-03T10:42:43.929+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2024-05-03T11:01:00.552+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2024-05-03T11:01:05.407+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2024-05-03T11:08:39.112+0800","caller":"logger/logger.go:44","msg":"init logger success"}
+{"level":"INFO","time":"2024-05-03T11:15:18.860+0800","caller":"logger/logger.go:44","msg":"init logger success"}
